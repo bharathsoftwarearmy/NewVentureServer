@@ -80,7 +80,8 @@ public class Installation extends HttpServlet {
 		}
 		
 		
-		new InstallationDAO().insertDeviceInstallation(installation);
+		String res = new InstallationDAO().insertDeviceInstallation(installation);
+		response.getWriter().write(res);
 	}
 
 }

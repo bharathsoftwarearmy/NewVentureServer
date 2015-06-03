@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import com.bijesh.donateblood.TableConstants;
 import com.bijesh.donateblood.database.DataStore;
 import com.bijesh.donateblood.models.Installation;
+import com.bijesh.donateblood.utils.ResponseUtil;
 
 public class InstallationDAO extends DataStore implements TableConstants{
 	
@@ -19,7 +20,7 @@ public class InstallationDAO extends DataStore implements TableConstants{
 		}
 	}
 	
-    public void insertDeviceInstallation(Installation installation){
+    public String insertDeviceInstallation(Installation installation){
         try{
         dbConnect();
     	String query ="INSERT INTO "+INSTALLATION_TABLE_NAME+" ("+INSTALLATION_COLUMN_UNIQUEID+
@@ -32,9 +33,11 @@ public class InstallationDAO extends DataStore implements TableConstants{
 		
 		dbExecutePrep();
 		System.out.println("$$$$ Row inserted $$$$$$$");
+		return ResponseUtil.getSuccessResponse();
         }catch (SQLException e){
         	e.printStackTrace();
         }
+        return null;
     }
 
 }
