@@ -1,0 +1,6 @@
+404 issue
+
+http://stackoverflow.com/questions/4919846/why-tomcat-server-location-property-is-greyed-in-eclipse
+ or 
+
+ on server remove the deployed web app and add it again
