@@ -5,10 +5,19 @@ public class ResponseUtil {
 	public static String getSuccessResponse(){
 		String response = "{\"response\":{"+
        "\"code\":\"2000\","+
-       "\"description\":\"reponse desc here\","+
+       "\"description\":\"Success\","+
        "\"severity\":\","+
        "\"level\":\"\"}"+"}";
 		return response;
+	}
+	
+	public static String getErrorResponse(){
+		String response = "{\"response\":{"+
+			       "\"code\":\"1000\","+
+			       "\"description\":\"failure\","+
+			       "\"severity\":\","+
+			       "\"level\":\"\"}"+"}";
+					return response;
 	}
 
 }

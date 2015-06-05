@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONObject;
 
 import com.bijesh.donateblood.dao.InstallationDAO;
+import com.bijesh.donateblood.utils.ResponseUtil;
 
 
 /**
@@ -78,9 +79,12 @@ public class Installation extends HttpServlet {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		
-		
-		String res = new InstallationDAO().insertDeviceInstallation(installation);
+		String res = null;
+		if(!new InstallationDAO().isUserAlreadyInstalled(installation)){
+		 res = new InstallationDAO().insertDeviceInstallation(installation);
+		}else{
+			res = ResponseUtil.getErrorResponse();
+		}
 		response.getWriter().write(res);
 	}
 

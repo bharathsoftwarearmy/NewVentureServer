@@ -1,6 +1,7 @@
 package com.bijesh.donateblood.dao;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.bijesh.donateblood.TableConstants;
@@ -11,13 +12,35 @@ import com.bijesh.donateblood.utils.ResponseUtil;
 public class InstallationDAO extends DataStore implements TableConstants{
 	
 	
-	public void isUserAlreadyInstalled(){
+	public boolean isUserAlreadyInstalled(Installation installation){
+		int retval = 0;
 		try{
 		dbConnect();
-		System.out.println("$$$$$$$$$ Connection Established $$$$$$$$$$");
+		
+		String query = "select count(*) from "+ INSTALLATION_TABLE_NAME +" where "+INSTALLATION_COLUMN_UNIQUEID+" = '"
+		+installation.getUniqueId()+"'";
+		
+		System.out.println("query : "+query);
+		
+//		PreparedStatement statement = getPrepStatement(query,PreparedStatement.RETURN_GENERATED_KEYS);
+//		statement.setString(1, installation.getUniqueId());
+		
+		ResultSet rs = dbQuery(query);
+		
+		if(rs != null){
+			while(rs.next()){
+				
+				retval = rs.getInt(1);
+				System.out.println("after return val "+retval);
+			}
+		}
+		
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
+		boolean retFlag = retval > 0;
+		System.out.println("$$ retFlag "+retFlag);
+		return retval > 0;
 	}
 	
     public String insertDeviceInstallation(Installation installation){
@@ -39,5 +62,7 @@ public class InstallationDAO extends DataStore implements TableConstants{
         }
         return null;
     }
+    
+    
 
 }
