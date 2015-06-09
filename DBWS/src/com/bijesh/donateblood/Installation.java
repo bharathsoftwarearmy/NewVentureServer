@@ -83,7 +83,7 @@ public class Installation extends HttpServlet {
 		if(!new InstallationDAO().isUserAlreadyInstalled(installation)){
 		 res = new InstallationDAO().insertDeviceInstallation(installation);
 		}else{
-			res = ResponseUtil.getErrorResponse();
+			res = ResponseUtil.getErrorResponse("User already exists");
 		}
 		response.getWriter().write(res);
 	}

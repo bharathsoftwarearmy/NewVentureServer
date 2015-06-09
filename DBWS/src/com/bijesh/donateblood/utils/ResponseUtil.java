@@ -11,11 +11,11 @@ public class ResponseUtil {
 		return response;
 	}
 	
-	public static String getErrorResponse(){
+	public static String getErrorResponse(String message){
 		String response = "{\"response\":{"+
 			       "\"code\":\"1000\","+
-			       "\"description\":\"failure\","+
-			       "\"severity\":\","+
+			       "\"description\":\""+message+"\","+
+			       "\"severity\":\"\","+
 			       "\"level\":\"\"}"+"}";
 					return response;
 	}
